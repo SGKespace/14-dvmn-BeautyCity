@@ -214,9 +214,9 @@ async def addrew(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     global TEXT_FIO, CHAT_ID, TEXT_REW, CUSTOMER
     namemaster = update.message.text
 
-    event_ = (TEXT_REW, CUSTOMER, namemaster)
+    event_ = (None, TEXT_REW, CUSTOMER, namemaster)
     async with aiosqlite.connect(chf.file_db) as db:
-        await db.execute('INSERT INTO appadmin_Feedback VALUES (?, ?, ?)', event_)
+        await db.execute('INSERT INTO appadmin_Feedback VALUES (?, ?, ?, ?)', event_)
         await db.commit()
     text = "Ваш отзыв записан"
     query = update.message
